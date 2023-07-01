@@ -1,0 +1,28 @@
+from PIL import Image, ImageDraw, ImageFont
+
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+font_size = 100
+font_path = 'arial.ttf'
+output_file = 'font_file.png'
+
+# Create a blank image to store the glyphs
+image_width = font_size * len(alphabet)
+image_height = font_size
+image = Image.new('RGB', (image_width, image_height), color='white')
+draw = ImageDraw.Draw(image)
+
+# Load the font
+font = ImageFont.truetype(font_path, font_size)
+
+# Generate and store the glyphs
+for i, letter in enumerate(alphabet):
+    # Calculate the position for each glyph
+    x = i * font_size
+    y = 0
+
+    # Draw the glyph on the image
+    draw.text((x, y), letter, fill='black', font=font)
+
+# Save the image as a font file
+image.save(output_file)
+print("Font file generated successfully.")
